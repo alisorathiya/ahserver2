@@ -109,3 +109,4 @@ pipeline {
 // 4. if you only need to use credentials for a particular stage you can define inside the stage as : 
 // withCredentials([]){ usernamePassword(credentials : 'your_credentials_id_here', usernameVariable: USER, passwordVariable: PWD)}
 // 5. The above line will fetch credentials and store in USER and PWD variable
+//6. Important : Check ✅ to use username as secret
