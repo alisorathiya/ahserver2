@@ -61,7 +61,8 @@ pipeline {
                     usernamePassword(credentials:'alihusain-test-server-credentials',usernameVariable: USER, passwordVariable: PWD)
                     ])  {
                     // sh "userPASSWORD ${USER} ${PWD}"
-                    echo "userPASSWORD ${USER} ${PWD}"
+                    // echo "userPASSWORD ${USER} ${PWD}"
+                    echo "userPASSWORD $USER $PWD"
                     
                 }
             }
