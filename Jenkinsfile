@@ -10,7 +10,7 @@ pipeline {
     
         NEW_VERSION = '1.3.0'
         BATCH_NAME = 'MIFTAH DEVOPS BATCH'
-        SERVER_CREDENTIALS =  credentials('alihusain-test-server-credentials')
+//         SERVER_CREDENTIALS =  credentials('alihusain-test-server-credentials')
     }
     
     
@@ -57,9 +57,17 @@ pipeline {
          stage('deploy') {
             steps {
              echo "Deploying Application for ${BATCH_NAME}..."
-                echo "deploying with SERVER CREDENTIALS : ${SERVER_CREDENTIALS}"
-                sh "${SERVER_CREDENTIALS}"
-                sh "java --version"
+//                 echo "deploying with SERVER CREDENTIALS : ${SERVER_CREDENTIALS}"
+//                 sh "${SERVER_CREDENTIALS}"
+//                 sh "java --version"
+                
+                
+                // Required Plugins in order to use the below script : Credentials, Credentials Binding
+                withCredentials([usernamePassword(credentials:'alihusain-test-server-credentials',usernameVariable: USER, passwordVariable: PWD )])
+                {
+                    sh "userPASSWORD ${USER} ${PWD}"
+                    
+                }
             }
         }
     }
