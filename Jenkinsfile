@@ -57,12 +57,14 @@ pipeline {
             steps {
              echo "Deploying Application for ${DEVOPS_BATCH}..."   
                              // Required Plugins in order to use the below script : Credentials, Credentials Binding             
-                withCredentials([
-                    usernamePassword(credentialsId:'alihusain-test-server-credentials', usernameVariable: 'USER', passwordVariable: 'PWD')
-                    ])  {
-                    sh "userPASSWORD ${USER} ${PWD}"
+                // withCredentials([ usernamePassword(credentials:'alihusain-test-server-credentials', usernameVariable: 'USER', passwordVariable: 'PWD')  ])  {
+                 
+                 
+                 withCredentials([usernamePassword(credentialsId: 'alihusain-test-server-credentials', usernameVariable: 'USERNAME', passwordVariable: 'PASSWORD')]) {
+
+                    // sh "userPASSWORD ${USER} ${PWD}"
                     // echo "userPASSWORD ${USER} ${PWD}"
-                    // echo "userPASSWORD ${USERNAME} ${PASSWORD}"
+                    echo "userPASSWORD ${USERNAME} ${PASSWORD}"
         
                 }
             }
