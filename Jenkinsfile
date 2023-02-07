@@ -5,10 +5,19 @@ pipeline {
         timeout(time: 1, unit: 'SECONDS')
     }
     stages {
-        stage('Test') {
+        stage('Build') {
             steps {
-                java --version
-                echo 'hello'
+             echo 'Building Application...'
+            }
+        }
+         stage('Test') {
+            steps {
+             echo 'Testing Application...'
+            }
+        }
+         stage('Deploy') {
+            steps {
+             echo 'Deploying Application...'
             }
         }
     }
