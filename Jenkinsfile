@@ -7,8 +7,8 @@ pipeline {
     // For defining custom environmental variables 
 //  emviornment {} || Available through all the stages
     enviornment {
-        NEW_VERSION = '1.3.0',
-        BATCH_NAME = 'MIFTAH DEVOPS BATCH'
+        NEW_VERSION = '1.3.0'
+        DEVOPS_BATCH = 'MIFTAH DEVOPS BATCH - 01'
 //         SERVER_CREDENTIALS =  credentials('alihusain-test-server-credentials')
     }
     
@@ -32,7 +32,7 @@ pipeline {
             
             
             steps {
-                echo "Building Application for ${BATCH_NAME}..."
+                echo "Building Application for ${DEVOPS_BATCH}..."
                 echo "Building Java Version ${NEW_VERSION}"
             }
         }
@@ -50,12 +50,12 @@ pipeline {
 //              }
 
              steps {
-             echo "Testing Application for ${BATCH_NAME}..."
+             echo "Testing Application for ${DEVOPS_BATCH}..."
             }
         }
          stage('deploy') {
             steps {
-             echo "Deploying Application for ${BATCH_NAME}..."
+             echo "Deploying Application for ${DEVOPS_BATCH}..."
 //                 echo "deploying with SERVER CREDENTIALS : ${SERVER_CREDENTIALS}"
 //                 sh "${SERVER_CREDENTIALS}"
 //                 sh "java --version"
@@ -74,20 +74,20 @@ pipeline {
     post {
     
         always {
-            echo "always... ${BATCH_NAME}"
-            echo "BATCH NAME : ${BATCH_NAME}"
+            echo "always... ${DEVOPS_BATCH}"
+            echo "BATCH NAME : ${DEVOPS_BATCH}"
             echo "NEW VERSION : ${NEW_VERSION}"
         // will execute whether build has failed or not || eg : email to the team about the status of the jobs
         }
         
         success {
         // it will execute only when all the stages have been succesfully executed
-        echo "success : all the stages for ${BATCH_NAME} have been succesfully executed"
+        echo "success : all the stages for ${DEVOPS_BATCH} have been succesfully executed"
         }
         
         failure {
         // it will execute if any of the stages have failed
-        echo "FAILURE : some of the stages for ${BATCH_NAME} have failed"
+        echo "FAILURE : some of the stages for ${DEVOPS_BATCH} have failed"
         }
         
         //other conditions : Build Status  or Build Status Changes
