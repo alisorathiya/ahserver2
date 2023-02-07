@@ -55,15 +55,15 @@ pipeline {
         }
          stage('deploy') {
             steps {
-             echo "Deploying Application for ${DEVOPS_BATCH}..."                
-                // Required Plugins in order to use the below script : Credentials, Credentials Binding
+             echo "Deploying Application for ${DEVOPS_BATCH}..."   
+                             // Required Plugins in order to use the below script : Credentials, Credentials Binding             
                 withCredentials([
-                    usernamePassword(credentials:'alihusain-test-server-credentials',usernameVariable: USER, passwordVariable: PWD)
+                    usernamePassword(credentials:'alihusain-test-server-credentials', usernameVariable: 'USER', passwordVariable: 'PWD')
                     ])  {
-                    // sh "userPASSWORD ${USER} ${PWD}"
+                    sh "userPASSWORD ${USER} ${PWD}"
                     // echo "userPASSWORD ${USER} ${PWD}"
-                    echo "userPASSWORD $USER $PWD"
-                    
+                    // echo "userPASSWORD ${USERNAME} ${PASSWORD}"
+        
                 }
             }
         }
