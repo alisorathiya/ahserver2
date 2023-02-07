@@ -56,9 +56,7 @@ pipeline {
          stage('deploy') {
             steps {
              echo "Deploying Application for ${DEVOPS_BATCH}..."   
-                             // Required Plugins in order to use the below script : Credentials, Credentials Binding             
-                // withCredentials([ usernamePassword(credentials:'alihusain-test-server-credentials', usernameVariable: 'USER', passwordVariable: 'PWD')  ])  {
-                 
+                             // Required Plugins in order to use the below script : Credentials, Credentials Binding                              
                  
                  withCredentials([usernamePassword(credentialsId: 'alihusain-test-server-credentials', usernameVariable: 'USERNAME', passwordVariable: 'PASSWORD')]) {
 
@@ -109,6 +107,6 @@ pipeline {
 // 2. Extract Credentials using SERVER_CREDENTIALS  = credentials('your_credentials_id_here') || it will bind the credentials to the variable here
 // 3. Requires Credentials Binding Plugin 
 // 4. if you only need to use credentials for a particular stage you can define inside the stage as : 
-// withCredentials([]){ usernamePassword(credentials : 'your_credentials_id_here', usernameVariable: USER, passwordVariable: PWD)}
+// withCredentials([]){ usernamePassword(credentialsId : 'your_credentials_id_here', usernameVariable: 'USERNAME', passwordVariable: 'PASSWORD')}
 // 5. The above line will fetch credentials and store in USER and PWD variable
 //6. Important : Check ✅ to use username as secret
