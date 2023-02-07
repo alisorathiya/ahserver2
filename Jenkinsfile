@@ -94,6 +94,9 @@ pipeline {
 }
 
 
+
+// Reference Video : https://www.youtube.com/watch?v=7KCS70sCoK0
+
 // ENV Variables : 
 //  http://localhost:8080/env-vars.html/
 // For defining custom environmental variables 
@@ -110,3 +113,4 @@ pipeline {
 // withCredentials([]){ usernamePassword(credentialsId : 'your_credentials_id_here', usernameVariable: 'USERNAME', passwordVariable: 'PASSWORD')}
 // 5. The above line will fetch credentials and store in USER and PWD variable
 //6. Important : Check ✅ to use username as secret
+
