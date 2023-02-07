@@ -7,8 +7,8 @@ pipeline {
     // For defining custom environmental variables 
 //  emviornment {} || Available through all the stages
     environment {
-        env.NEW_VERSION = '1.3.0'
-        env.DEVOPS_BATCH = 'MIFTAH DEVOPS BATCH - 01'
+        NEW_VERSION = '1.3.0'
+        DEVOPS_BATCH = 'MIFTAH DEVOPS BATCH - 01'
 //         SERVER_CREDENTIALS =  credentials('alihusain-test-server-credentials')
     }
     
