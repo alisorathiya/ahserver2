@@ -17,7 +17,7 @@ pipeline {
     
     options {
         // Timeout counter starts AFTER agent is allocated
-        timeout(time: 1, unit: 'SECONDS')
+        // timeout(time: 1, unit: 'SECONDS')
     }
     stages {
         stage('build') {
@@ -55,16 +55,13 @@ pipeline {
         }
          stage('deploy') {
             steps {
-             echo "Deploying Application for ${DEVOPS_BATCH}..."
-//                 echo "deploying with SERVER CREDENTIALS : ${SERVER_CREDENTIALS}"
-//                 sh "${SERVER_CREDENTIALS}"
-//                 sh "java --version"
-                
-                
+             echo "Deploying Application for ${DEVOPS_BATCH}..."                
                 // Required Plugins in order to use the below script : Credentials, Credentials Binding
-                withCredentials([usernamePassword(credentials:'alihusain-test-server-credentials',usernameVariable: USER, passwordVariable: PWD )])
-                {
-                    sh "userPASSWORD ${USER} ${PWD}"
+                withCredentials([
+                    usernamePassword(credentials:'alihusain-test-server-credentials',usernameVariable: USER, passwordVariable: PWD)
+                    ])  {
+                    // sh "userPASSWORD ${USER} ${PWD}"
+                    echo "userPASSWORD ${USER} ${PWD}"
                     
                 }
             }
