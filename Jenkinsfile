@@ -7,7 +7,6 @@ pipeline {
     environment {
   NEW_VERSION = "1.3.0"
   DEVOPS_BATCH = "MIFTAH DEVOPS BATCH - 01"
-        //  SERVER_CREDENTIALS =  credentials('alihusain-test-server-credentials')
 }
 
     // parameters{
@@ -58,6 +57,8 @@ tools {
                 // echo "Building Java Version ${NEW_VERSION}"
                 echo "Installing JAVA 9 ..."
                 // bat "java --version"
+                sh "java --version"
+                // echo "Java Installed"
                 // bat "echo 'using bat"
               
             }
@@ -150,7 +151,6 @@ when{
 // 4. if you only need to use credentials for a particular stage you can define inside the stage as : 
 // withCredentials([]){ usernamePassword(credentialsId : 'your_credentials_id_here', usernameVariable: 'USERNAME', passwordVariable: 'PASSWORD')}
 // 5. The above line will fetch credentials and store in USER and PWD variable
-//6. Important : Check ✅ to use username as secret
 
 
 
@@ -158,5 +158,13 @@ when{
 
 // Types of Parameters : 
 // 1.  string(name,defaultValue,description)
-// 2. 
+// 2. choice
 
+
+//Validate your syntax in jenkins
+// https://opensource.triology.de/jenkins/pipeline-syntax/
+
+
+// GITPOD FOR JENKINS : 
+// https://github.com/alisorathiya/gitpod-jenkins
+// run : docker-compose up
