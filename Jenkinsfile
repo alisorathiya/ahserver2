@@ -20,7 +20,9 @@ tools {
 
     //currently 3 tools are available in jenkins : jdk maven gradle
 
-    maven 'Maven'
+    // maven 'Maven'
+
+    jdk 'JAVA-9'
 }
 
 
@@ -55,9 +57,10 @@ tools {
             steps {
                 echo "Building Application for ${DEVOPS_BATCH}..."
                 echo "Building Java Version ${NEW_VERSION}"
-                echo "Installing Maven..."
-                sh "mvn install"
-                echo "Maven Installed!"
+                echo "Installing JAVA 9 ..."
+                bat "java --version"
+                // bat "echo 'using bat"
+              
             }
         }
          stage('test') {
