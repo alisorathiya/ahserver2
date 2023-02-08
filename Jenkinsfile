@@ -5,16 +5,21 @@ pipeline {
     agent any
     
 
-    parameters{
-        // string(name:'VERSION',defaultValue: '', description:'version to deploy')
+    // parameters{
+    //     // string(name:'VERSION',defaultValue: '', description:'version to deploy')
 
+    //     // choices of version that needs to be deployed
+    //     choice(name:'VERSION',choices:['1.1.0','1.2.0','1.3.0'],description:'')
 
-        // choices of version that needs to be deployed
-        choice(name:'VERSION',choices:['1.1.0','1.2.0','1.3.0'],description:'')
+    //     //if you want to skip certain stage on some builds 
+    //     booleanParam(name:'executeTests',defaultValue: true, description:'version to deploy')
+    // }
 
-        //if you want to skip certain stage on some builds 
-        booleanParam(name:'executeTests',defaultValue: true, description:'version to deploy')
-    }
+parameters {
+  choice choices: ['1.1.0', '1.2.0', '1.3.0'], description: 'Select any version', name: 'VERSION'
+  booleanParam defaultValue: true, description: 'version to deploy', name: 'executeTests'
+}
+
 
     
 tools {
@@ -59,10 +64,11 @@ tools {
             
             
             steps {
-                // echo "Building Application for ${DEVOPS_BATCH}..."
+                echo "Building Application for ${DEVOPS_BATCH}..."
+                echo %choice%
                 // echo "Building Java Version ${NEW_VERSION}"
                 echo "Installing JAVA 9 ..."
-                bat "java --version"
+                // bat "java --version"
                 // bat "echo 'using bat"
               
             }
