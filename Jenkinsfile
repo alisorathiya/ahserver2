@@ -3,7 +3,6 @@
 
 pipeline {
     agent any
-    
 
     // parameters{
     //     // string(name:'VERSION',defaultValue: '', description:'version to deploy')
@@ -15,19 +14,14 @@ pipeline {
     //     booleanParam(name:'executeTests',defaultValue: true, description:'version to deploy')
     // }
 
-parameters {
+        parameters {
   choice choices: ['1.1.0', '1.2.0', '1.3.0'], description: 'Select any version', name: 'VERSION'
   booleanParam defaultValue: true, description: 'version to deploy', name: 'executeTests'
-}
+                    }
 
-
-    
 tools {
-
     //currently 3 tools are available in jenkins : jdk maven gradle
-
     // maven 'Maven'
-
     jdk 'JAVA-9'
 }
 
@@ -65,7 +59,7 @@ tools {
             
             steps {
                 echo "Building Application for ${DEVOPS_BATCH}..."
-                echo %choice%
+                echo " Choice : %choice%"
                 // echo "Building Java Version ${NEW_VERSION}"
                 echo "Installing JAVA 9 ..."
                 // bat "java --version"
