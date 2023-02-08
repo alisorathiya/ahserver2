@@ -31,22 +31,9 @@ environment {
         //  SERVER_CREDENTIALS =  credentials('alihusain-test-server-credentials')
 }
 
-
-//  environment {
-//         NEW_VERSION = '1.3.0'
-//         DEVOPS_BATCH = 'MIFTAH DEVOPS BATCH - 01'
- 
-//     }
-    
-
-
-
     // For defining custom environmental variables 
 //  emviornment {} || Available through all the stages
-   
-    
-    
-    
+  
     // options {
     //     // Timeout counter starts AFTER agent is allocated
     //     timeout(time: 59, unit: 'SECONDS')
@@ -75,9 +62,6 @@ environment {
         }
          stage('test') {
              
-// parameter expression : 
-
-
 when{
     expression {
         params.executeTests
@@ -124,7 +108,7 @@ when{
     post {
     
         always {
-            echo "always... ${DEVOPS_BATCH}"
+            echo "always... ${env.DEVOPS_BATCH}"
             echo "BATCH NAME : ${DEVOPS_BATCH}"
             echo "NEW VERSION : ${NEW_VERSION}"
         // will execute whether build has failed or not || eg : email to the team about the status of the jobs
