@@ -16,13 +16,7 @@ pipeline {
         booleanParam(name:'executeTests',defaultValue: true, description:'version to deploy')
     }
 
- environment {
-        NEW_VERSION = '1.3.0'
-        DEVOPS_BATCH = 'MIFTAH DEVOPS BATCH - 01'
-//         SERVER_CREDENTIALS =  credentials('alihusain-test-server-credentials')
-    }
     
-
 tools {
 
     //currently 3 tools are available in jenkins : jdk maven gradle
@@ -33,6 +27,14 @@ tools {
 }
 
 
+ environment {
+        NEW_VERSION = '1.3.0'
+        DEVOPS_BATCH = 'MIFTAH DEVOPS BATCH - 01'
+//         SERVER_CREDENTIALS =  credentials('alihusain-test-server-credentials')
+    }
+    
+
+
 
     // For defining custom environmental variables 
 //  emviornment {} || Available through all the stages
@@ -40,10 +42,10 @@ tools {
     
     
     
-    options {
-        // Timeout counter starts AFTER agent is allocated
-        timeout(time: 59, unit: 'SECONDS')
-    }
+    // options {
+    //     // Timeout counter starts AFTER agent is allocated
+    //     timeout(time: 59, unit: 'SECONDS')
+    // }
     stages {
         stage('build') {
             
