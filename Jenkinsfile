@@ -3,6 +3,12 @@
 
 pipeline {
     agent any
+    
+    environment {
+  NEW_VERSION = "1.3.0"
+  DEVOPS_BATCH = "MIFTAH DEVOPS BATCH - 01"
+        //  SERVER_CREDENTIALS =  credentials('alihusain-test-server-credentials')
+}
 
     // parameters{
     //     // string(name:'VERSION',defaultValue: '', description:'version to deploy')
@@ -25,11 +31,7 @@ tools {
     jdk 'JAVA-9'
 }
 
-environment {
-  NEW_VERSION = "1.3.0"
-  DEVOPS_BATCH = "MIFTAH DEVOPS BATCH - 01"
-        //  SERVER_CREDENTIALS =  credentials('alihusain-test-server-credentials')
-}
+
 
     // For defining custom environmental variables 
 //  emviornment {} || Available through all the stages
@@ -108,7 +110,7 @@ when{
     post {
     
         always {
-            echo "always... ${env.DEVOPS_BATCH}"
+            echo "always... ${DEVOPS_BATCH}"
             echo "BATCH NAME : ${DEVOPS_BATCH}"
             echo "NEW VERSION : ${NEW_VERSION}"
         // will execute whether build has failed or not || eg : email to the team about the status of the jobs
