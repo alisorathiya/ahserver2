@@ -25,12 +25,18 @@ tools {
     jdk 'JAVA-9'
 }
 
+environment {
+  NEW_VERSION = "1.3.0"
+  DEVOPS_BATCH = "MIFTAH DEVOPS BATCH - 01"
+        //  SERVER_CREDENTIALS =  credentials('alihusain-test-server-credentials')
+}
 
- environment {
-        NEW_VERSION = '1.3.0'
-        DEVOPS_BATCH = 'MIFTAH DEVOPS BATCH - 01'
-//         SERVER_CREDENTIALS =  credentials('alihusain-test-server-credentials')
-    }
+
+//  environment {
+//         NEW_VERSION = '1.3.0'
+//         DEVOPS_BATCH = 'MIFTAH DEVOPS BATCH - 01'
+ 
+//     }
     
 
 
