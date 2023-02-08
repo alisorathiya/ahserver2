@@ -4,6 +4,27 @@
 pipeline {
     agent any
     
+
+    parameters{
+        // string(name:'VERSION',defaultValue: '', description:'version to deploy')
+
+
+        // choices of version that needs to be deployed
+        choice(name:'VERSION',choices:['1.1.0','1.2.0','1.3.0'],description:'')
+
+        //if you want to skip certain stage on some builds 
+        booleanParam(name:'executeTests',defaultValue: true, description:'version to deploy')
+    }
+
+tools {
+
+    //currently 3 tools are available in jenkins : jdk maven gradle
+
+    maven 'Maven'
+}
+
+
+
     // For defining custom environmental variables 
 //  emviornment {} || Available through all the stages
     environment {
@@ -34,10 +55,27 @@ pipeline {
             steps {
                 echo "Building Application for ${DEVOPS_BATCH}..."
                 echo "Building Java Version ${NEW_VERSION}"
+                echo "Installing Maven..."
+                sh "mvn install"
+                echo "Maven Installed!"
             }
         }
          stage('test') {
              
+// parameter expression : 
+
+
+when{
+    expression {
+        params.executeTests
+
+    }
+}
+
+
+// end 
+
+
              // Defining conditionals for each stage - when is used 
              //eg you only want to run the test on development branch build 
              // when refers to "When should this be executed"
@@ -63,6 +101,7 @@ pipeline {
                     // sh "userPASSWORD ${USER} ${PWD}"
                     // echo "userPASSWORD ${USER} ${PWD}"
                     echo "userPASSWORD ${USERNAME} ${PASSWORD}"
+                    echo "deploying version ${params.VERSION}..."
         
                 }
             }
@@ -113,4 +152,12 @@ pipeline {
 // withCredentials([]){ usernamePassword(credentialsId : 'your_credentials_id_here', usernameVariable: 'USERNAME', passwordVariable: 'PASSWORD')}
 // 5. The above line will fetch credentials and store in USER and PWD variable
 //6. Important : Check ✅ to use username as secret
+
+
+
+// PARAMETERS IN JENKINSFILE
+
+// Types of Parameters : 
+// 1.  string(name,defaultValue,description)
+// 2. 
 
