@@ -59,8 +59,8 @@ tools {
             
             
             steps {
-                echo "Building Application for ${DEVOPS_BATCH}..."
-                echo "Building Java Version ${NEW_VERSION}"
+                // echo "Building Application for ${DEVOPS_BATCH}..."
+                // echo "Building Java Version ${NEW_VERSION}"
                 echo "Installing JAVA 9 ..."
                 bat "java --version"
                 // bat "echo 'using bat"
