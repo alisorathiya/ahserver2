@@ -16,6 +16,13 @@ pipeline {
         booleanParam(name:'executeTests',defaultValue: true, description:'version to deploy')
     }
 
+ environment {
+        NEW_VERSION = '1.3.0'
+        DEVOPS_BATCH = 'MIFTAH DEVOPS BATCH - 01'
+//         SERVER_CREDENTIALS =  credentials('alihusain-test-server-credentials')
+    }
+    
+
 tools {
 
     //currently 3 tools are available in jenkins : jdk maven gradle
@@ -29,12 +36,7 @@ tools {
 
     // For defining custom environmental variables 
 //  emviornment {} || Available through all the stages
-    environment {
-        NEW_VERSION = '1.3.0'
-        DEVOPS_BATCH = 'MIFTAH DEVOPS BATCH - 01'
-//         SERVER_CREDENTIALS =  credentials('alihusain-test-server-credentials')
-    }
-    
+   
     
     
     
