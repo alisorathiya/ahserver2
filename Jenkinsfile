@@ -67,6 +67,8 @@ tools {
              
 when{
     expression {
+
+        // BRANCH_NAME== 'main'
         params.executeTests
 
     }
@@ -80,12 +82,12 @@ when{
              //eg you only want to run the test on development branch build 
              // when refers to "When should this be executed"
              
-//              when {
-//                  expression  {
-//                      //BRANCH_NAME : Environmental Variable for Jenkins that gives us all the branch name in the mentioned git repo
-//              BRANCH_NAME == 'dev' || BRANCH_NAME =='master'
-//                  }
-//              }
+            //  when {
+            //      expression  {
+            //          //BRANCH_NAME : Environmental Variable for Jenkins that gives us all the branch name in the mentioned git repo
+            //  BRANCH_NAME == 'dev' || BRANCH_NAME =='master'
+            //      }
+            //  }
 
              steps {
              echo "Testing Application for ${DEVOPS_BATCH}..."
@@ -168,3 +170,9 @@ when{
 // GITPOD FOR JENKINS : 
 // https://github.com/alisorathiya/gitpod-jenkins
 // run : docker-compose up
+
+
+
+// Installing JENKINS ON WINDOWS : 
+// https://youtu.be/XuMrEDA8cAI
+//webhook
