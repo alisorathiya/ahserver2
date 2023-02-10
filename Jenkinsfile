@@ -117,45 +117,36 @@ tools {
                 }
             }
         }
-    }
+    
     // Post refers to execution of certain tasks / scripts after all the stages have been executed
     post {
-    
         always {
             echo "always... ${DEVOPS_BATCH}"
             echo "BATCH NAME : ${DEVOPS_BATCH}"
             echo "NEW VERSION : ${NEW_VERSION}"
         // will execute whether build has failed or not || eg : email to the team about the status of the jobs
      
-     // 
-    
-     
-        }
+     //   
+     }
         
         success {
         // it will execute only when all the stages have been succesfully executed
         echo "success : all the stages for ${DEVOPS_BATCH} have been succesfully executed"
-
 // SLACK  
 // Email 
-
 
         }
         
         failure {
         // it will execute if any of the stages have failed
         echo "FAILURE : some of the stages for ${DEVOPS_BATCH} have failed"
-
-// 
-
-
         }
         
         //other conditions : Build Status  or Build Status Changes
         
     }
-}
 
+}
 
 
 // Reference Video : https://www.youtube.com/watch?v=7KCS70sCoK0
