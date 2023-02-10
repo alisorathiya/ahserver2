@@ -90,21 +90,22 @@ tools {
         }
          stage('deploy') {
 
-when{
-    expression {
 
-        BRANCH_NAME== "main" 
-        params.executeTests
+// when{
+//     expression {
 
-    }
-}
+//         BRANCH_NAME== "main" 
+//         params.executeTests
+
+//     }
+// }
 
 
             steps {
              echo "Deploying Application for ${DEVOPS_BATCH}..."   
                              // Required Plugins in order to use the below script : Credentials, Credentials Binding                              
                  
-                 withCredentials([usernamePassword(credentialsId: 'alihusain-test-server-credentials', usernameVariable: 'USERNAME', passwordVariable: 'PASSWORD')]) {
+                //  withCredentials([usernamePassword(credentialsId: 'alihusain-test-server-credentials', usernameVariable: 'USERNAME', passwordVariable: 'PASSWORD')]) {
 
                     // sh "userPASSWORD ${USER} ${PWD}"
                     // echo "userPASSWORD ${USER} ${PWD}"
@@ -125,16 +126,29 @@ when{
             echo "BATCH NAME : ${DEVOPS_BATCH}"
             echo "NEW VERSION : ${NEW_VERSION}"
         // will execute whether build has failed or not || eg : email to the team about the status of the jobs
+     
+     // 
+    
+     
         }
         
         success {
         // it will execute only when all the stages have been succesfully executed
         echo "success : all the stages for ${DEVOPS_BATCH} have been succesfully executed"
+
+// SLACK  
+// Email 
+
+
         }
         
         failure {
         // it will execute if any of the stages have failed
         echo "FAILURE : some of the stages for ${DEVOPS_BATCH} have failed"
+
+// 
+
+
         }
         
         //other conditions : Build Status  or Build Status Changes
