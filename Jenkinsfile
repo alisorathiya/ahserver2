@@ -64,15 +64,10 @@ tools {
             }
         }
          stage('test') {
+
+        
              
-when{
-    expression {
 
-        // BRANCH_NAME== 'main'
-        params.executeTests
-
-    }
-}
 
 
 // end 
@@ -94,6 +89,17 @@ when{
             }
         }
          stage('deploy') {
+
+when{
+    expression {
+
+        BRANCH_NAME== "main" 
+        params.executeTests
+
+    }
+}
+
+
             steps {
              echo "Deploying Application for ${DEVOPS_BATCH}..."   
                              // Required Plugins in order to use the below script : Credentials, Credentials Binding                              
@@ -104,6 +110,8 @@ when{
                     // echo "userPASSWORD ${USER} ${PWD}"
                     echo "userPASSWORD ${USERNAME} ${PASSWORD}"
                     echo "deploying version ${params.VERSION}..."
+
+                    // Deploy steps to PROD
         
                 }
             }
