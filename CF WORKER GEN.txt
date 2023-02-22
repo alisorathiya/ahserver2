@@ -96,8 +96,8 @@ const html = `<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta h
           </label>
           <input type="text"
                  name="num_ips"
-                 placeholder="10"
-                 value=10
+                 placeholder="50"
+                 value="50"
                   />
         </div>
         <div class="form-control">
@@ -117,7 +117,7 @@ const html = `<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta h
             <input type="text"
                    name="num_configs"
                    placeholder="4"
-                   value=200
+                   value="50"
                     />
         </div>
         <div class="form-control">
@@ -134,15 +134,16 @@ const html = `<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta h
           <label for="subscription">
             <b>⚡Link for Subscription:</b>
           </label>
-          <textarea name="" id="subscription" placeholder="" style="height: 150px;"></textarea>
+          <textarea name="" id="subscription" placeholder="" style="height: 120px;"></textarea>
         </div>
         <label for="operator" id="label-operator">APP DOWNLOAD LINKS : <br>
             <a style="color:#0000ff" href=https://github.com/2dust/v2rayNG/releases/tag/1.7.38 >ANDROID</a>
             <a style="color:#0000ff" href=https://github.com/MatsuriDayo/nekoray/releases/tag/2.14 >WINDOWS</a>
             <a style="color:#0000ff" href=https://apps.apple.com/us/app/spectre-vpn/id1508712998 >iOS</a>
-        </label><br>
-         <a style="color:#F95200" href='#'>By AHSorathiya</a>
+        </label><br><br>
+        <a style="color:#F95200" href='#'>By AHSorathiya</a>
     </form>
+     
   <script>
   const form = document.getElementById('form');
   form.addEventListener('submit', (evt) => {
