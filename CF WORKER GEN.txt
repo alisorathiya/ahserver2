@@ -1,0 +1,322 @@
+const sub_link = 'https://raw.githubusercontent.com/mahdibland/ShadowsocksAggregator/master/Eternity.txt';
+const ips_link = "http://bot.sudoer.net/best.cf.iran.all";
+const html = `<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>
+       AHSORATHIYA
+    </title>
+    <style>
+        body {
+            background-color: #185a9d;
+            font-family: "vazir";
+            text-align: center;
+            direction: ltr;
+        }
+
+        form {
+            background-color: #fff;
+            max-width: 500px;
+            margin: 50px auto;
+            padding: 30px 20px;
+            box-shadow: 2px 5px 10px rgba(0, 0, 0, 0.5);
+        }
+
+        .form-control {
+            text-align: left;
+            margin-bottom: 25px;
+        }
+
+        .form-control label {
+            display: block;
+            margin-bottom: 10px;
+        }
+
+        .form-control input,
+        .form-control select,
+        .form-control textarea {
+            direction: ltr;
+            border: 1px solid #777;
+            border-radius: 2px;
+            font-family: inherit;
+            padding: 10px;
+            display: block;
+            width: 95%;
+        }
+
+          button {
+            background-color: #F95200; /* Green */
+  border: none;
+  color: white;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+
+            margin-bottom: 20px;
+  cursor: pointer;
+  -webkit-transition-duration: 0.4s; /* Safari */
+  transition-duration: 0.4s;
+  
+        }
+        button:hover {
+        box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24),0 17px 50px 0 rgba(0,0,0,0.19);
+        }
+    </style>
+</head>
+
+<body>
+    <h1 style='color:white;'>Subscription Link Generator by AHSORATHIYA</h1>    
+    <form id="form">
+        <label>
+          ⚠️ If you have a clean IP or private configuration, enter them in the corresponding field. Otherwise, keep it as it is. The configuration is made for you based on free resources.
+
+       </label>
+        <div class="form-control" style="margin-top: 40px;">
+          <label for="operator">
+📱Choose your operator:
+          </label>
+
+          <select name="operator" style="direction: ltr;">
+              <option value="">📶 SELECT OPERATOR</option>
+                <option value="IRC">ایرانسل IRANCELL</option>
+<option value="MCI">همراه اول HAMRAH AVVAL</option>
+                       <option value="MKB">مخابرات MOKHABERAT</option>
+               <option value="SHT">شاتل SHATEL</option>
+                 <option value="RTL">رایتل RIGHTEL</option>
+              <option value="AST">آسیاتک ASIATEK</option>
+              <option value="HWB">های وب HIGH WEB</option>
+              <option value="MBT">مبین نت MOBIN NET</option>
+              <option value="ZTL">زیتل ZITEL</option>
+          </select>
+        </div>
+
+        <div class="form-control">
+          <label for="ips">
+             🚀 NUMBER OF IPS
+          </label>
+          <input type="text"
+                 name="num_ips"
+                 placeholder="10"
+                 value=10
+                  />
+        </div>
+        <div class="form-control">
+            <label for="clean_ip">
+               🌏 CLEAN IP (WHITELISTED IP)
+            </label>
+            <input type="text"
+                   name="clean_ip"
+                   placeholder="use 'icook.hk' OR 'ip.isegaro.click'"
+                   value="ip.isegaro.click"
+                    />
+        </div>
+        <div class="form-control">
+            <label for="num_configs">
+⚒️ NUMBER OF CONFIGS : 
+            </label>
+            <input type="text"
+                   name="num_configs"
+                   placeholder="4"
+                   value=200
+                    />
+        </div>
+        <div class="form-control">
+            <label for="custom_config">
+               📋 PASTE YOUR CUSTOM CONFIG HERE : 
+            </label>
+             <textarea name="custom_config" placeholder="VMESS://..."  style="direction: ltr; height: 150px;"></textarea>
+        </div>
+        <button type="submit" value="submit">
+        CLICK HERE FOR SUBSCRIPTION LINK
+        </button>
+
+        <div class="form-control">
+          <label for="subscription">
+            <b>⚡Link for Subscription:</b>
+          </label>
+          <textarea name="" id="subscription" placeholder="" style="height: 150px;"></textarea>
+        </div>
+        <label for="operator" id="label-operator">APP DOWNLOAD LINKS : <br>
+            <a style="color:#0000ff" href=https://github.com/2dust/v2rayNG/releases/tag/1.7.38 >ANDROID</a>
+            <a style="color:#0000ff" href=https://github.com/MatsuriDayo/nekoray/releases/tag/2.14 >WINDOWS</a>
+            <a style="color:#0000ff" href=https://apps.apple.com/us/app/spectre-vpn/id1508712998 >iOS</a>
+        </label><br>
+         <a style="color:#F95200" href='#'>By AHSorathiya</a>
+    </form>
+  <script>
+  const form = document.getElementById('form');
+  form.addEventListener('submit', (evt) => {
+    evt.preventDefault();
+    const formData = new FormData(form);
+    let params = new URLSearchParams(formData);
+    let add = ""
+    for (let param of ["operator","num_ips","num_configs","clean_ip","custom_config"]){
+        let val = params.get(param).trim()
+        if (val != ""){
+            add+=param+"="+val+"&";
+        }
+    }
+    subs = window.location.href+"?"+add
+    subs= subs.substring(0,subs.length-1).replace("gen","sub");
+    document.getElementById('subscription').innerHTML = decodeURIComponent(subs);
+  });
+  </script>
+</body>
+</html>`
+export default {
+  async fetch(request) {
+    let url = new URL(request.url);
+    if (url.pathname.startsWith('/sub')) {
+      const searchParams = new URLSearchParams(url.search.substring(url.search.indexOf('?')));
+      let operator = searchParams.get('operator')
+      let ips=[]
+      if (searchParams.get('clean_ip') != null){
+        ips = [searchParams.get('clean_ip')]
+      }else{
+        let resp = await fetch(ips_link);
+        let cf_ips = await resp.text();
+        console.log("ips request status code: ",resp.status)
+        cf_ips = cf_ips.split('\n');
+        if(searchParams.get('num_ips') != null){
+          let num_ips = searchParams.get('num_ips')
+          ips = get_ips(cf_ips,num_ips,operator)
+        }else{
+          ips = get_ips(cf_ips,10,operator)
+        }
+      }
+      let configs = []
+      if (searchParams.get('custom_config') != null){
+        configs=[searchParams.get('custom_config')]
+      }else{   
+        let resp = await fetch(sub_link);
+        console.log("configs request status code: ",resp.status)
+        configs = await resp.text();
+        configs = configs.split('\n');
+        if(searchParams.get('num_configs') != null){
+          let num_configs=searchParams.get('num_configs')
+          configs=get_configs(configs,num_configs)
+        }else{
+          configs=get_configs(configs,4)
+        }
+      }
+      let newConfigs = '';
+      for (let subConfig of configs) {
+        let conf = subConfig.replace('vmess://', '');
+        conf = atob(conf);
+        conf = JSON.parse(conf);
+        for (let ip of ips){
+          var configNew = new Object();
+          configNew.v = '2';
+          configNew.add = ip;
+          configNew.port = conf.port;
+          configNew.id = conf.id;
+          configNew.net = conf.net;
+          configNew.host = url.hostname;
+          if (searchParams.get('custom_config') != null){
+            configNew.path = conf.path;
+          }else{
+            configNew.ps = conf.sni+"-"+ip;
+            configNew.path = '/' + conf.sni + conf.path;
+          }
+          configNew.tls = conf.tls;
+          configNew.sni = url.hostname;
+          configNew.aid = '0';
+          configNew.scy = 'auto';
+          configNew.type = 'auto';
+          configNew.fp = 'chrome';
+          configNew.alpn = 'http/1.1';
+          configNew = 'vmess://' + btoa(JSON.stringify(configNew));
+          newConfigs = newConfigs  + configNew+ '\n';
+        }
+      }
+      return new Response(newConfigs);
+    } else if(url.pathname.startsWith('/gen')){
+        return new Response(html, {
+            headers: {
+              'content-type': 'text/html;charset=UTF-8',
+            },
+          });
+    }
+    else {
+        const url = new URL(request.url);
+        const splitted = url.pathname.replace(/^\/*/, '').split('/');
+        const address = splitted[0];
+        url.pathname = splitted.slice(1).join('/');
+        url.hostname = address;
+        url.protocol = 'https';
+        return fetch(new Request(url, request));
+    }
+  }
+};
+
+
+function isIp(ipstr) {
+  try {
+    if (ipstr == "" || ipstr == undefined) return false;
+    if (!/^(\d{1,2}|1\d\d|2[0-4]\d|25[0-5])(\.(\d{1,2}|1\d\d|2[0-4]\d|25[0-5])){2}\.(\d{1,2}|1\d\d|2[0-4]\d|25[0-4])$/.test(ipstr)) {
+      return false;
+    }
+    var ls = ipstr.split('.');
+    if (ls == null || ls.length != 4 || ls[3] == "0" || parseInt(ls[3]) === 0) {
+      return false;
+    }
+    return true;
+  } catch (ee) { }
+  return false;
+};
+
+function get_ips(cf_ips,num_ips,opr) {
+  num_ips = Math.min((cf_ips.length,num_ips))
+  let ips=[]
+  if(opr==null){
+    cf_ips = getRandomSubarray(cf_ips,num_ips)
+    for (let ip of cf_ips){
+      ips.push(ip.split("\t")[0])
+    }
+  }else{
+    let i=0
+    for (let ip of cf_ips){
+      let oprs = ip.split(":").pop().trim().split(" ")
+      if(oprs.includes(opr)){
+        ips.push(ip.split("\t")[0].trim())
+        i+=1
+      }
+      if(i==num_ips){
+        break;
+      }
+    }
+  }
+  return ips
+};
+
+function get_configs(configs,num_configs) {
+  num_configs = Math.min((configs.length,num_configs))
+  let new_configs=[]
+  let i=0
+  for (let subConf of configs){
+    if (subConf.search('vmess') != -1) {
+      let conf = subConf.replace('vmess://', '');
+      conf = atob(conf);
+      conf = JSON.parse(conf);
+      if (conf.sni && !isIp(conf.sni) && conf.net == 'ws' && conf.port == 443) {
+        new_configs.push(subConf)
+        i+=1
+      }
+    }
+    if(i==num_configs){
+      break;
+    }
+  }
+  return new_configs
+};
+
+function getRandomSubarray(arr, size) {
+    var shuffled = arr.slice(0), i = arr.length, temp, index;
+    while (i--) {
+        index = Math.floor((i + 1) * Math.random());
+        temp = shuffled[index];
+        shuffled[index] = shuffled[i];
+        shuffled[i] = temp;
+    }
+    return shuffled.slice(0, size);
+}

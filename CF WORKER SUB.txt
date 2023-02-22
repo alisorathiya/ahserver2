@@ -1,0 +1,105 @@
+const best_ips = 'http://bot.sudoer.net/best.cf.iran.all'
+let operator_to_ips = {};
+const https_ports = [443, 2053, 2083, 2087, 2096, 8443]
+const subLink = 'https://raw.githubusercontent.com/mahdibland/ShadowsocksAggregator/master/sub/sub_merge.txt';
+const alpns = ['h2', 'http/1.1', 'h2,http/1.1', ''];
+const useragents = ['chrome', 'firefox', 'safari', 'random', 'randomized']
+
+export default {
+  async fetch(request) {
+    let url = new URL(request.url);
+    let realhostname = url.pathname.split('/')[1];
+    let operator = url.pathname.split('/')[2]
+    let realpathname = url.pathname.split('/')[3];
+    let resp_ips = await fetch(best_ips);
+    let all_ips = ''
+    let clean_ips = await resp_ips.text();
+    clean_ips = clean_ips.split('\n');
+    clean_ips.pop()
+    for (let ip_info of clean_ips) {
+      let info = ip_info.split(' ')
+      let clean_ip = info[0].trim()
+      all_ips = all_ips + clean_ip + '\n'
+      let operators = info.slice(4)
+      for (let op of operators){
+        if (operator_to_ips[op.toLowerCase()] == undefined){
+          operator_to_ips[op.toLowerCase()] = []
+        } else {
+          operator_to_ips[op.toLowerCase()] +=  clean_ip + '\n'
+        }
+      }
+    }
+    let ips = operator_to_ips[operator.toLowerCase()]? operator_to_ips[operator.toLowerCase()]: all_ips
+    ips = ips.split('\n');
+    ips.pop()
+    if (url.pathname.startsWith('/sub')) {
+      let newConfigs = '';
+      let resp = await fetch(subLink);
+      let subConfigs = await resp.text();
+      subConfigs = subConfigs.split('\n');
+      for (let subConfig of subConfigs) {
+        if (subConfig.search('vmess') != -1) {
+          subConfig = subConfig.replace('vmess://', '');
+          subConfig = atob(subConfig);
+          subConfig = JSON.parse(subConfig);
+          if (subConfig.sni && !isIp(subConfig.sni) && subConfig.net == 'ws' && https_ports.includes(subConfig.port)) {
+            var configNew = new Object();
+            configNew.v = '2';
+            configNew.ps = 'Node-' + subConfig.sni;
+            if (realpathname == '') {
+              configNew.add = ips[Math.floor(Math.random() * ips.length)];
+            } else {
+              configNew.add = realpathname;
+            };
+            configNew.port = subConfig.port;
+            configNew.id = subConfig.id;
+            configNew.net = subConfig.net;
+            configNew.host = url.hostname;
+            configNew.path = '/' + subConfig.sni + subConfig.path;
+            configNew.tls = subConfig.tls;
+            configNew.sni = url.hostname;
+            configNew.aid = '0';
+            configNew.scy = 'auto';
+            configNew.type = 'auto';
+            configNew.fp =  useragents[Math.floor(Math.random() * useragents.length)];
+            configNew.alpn = alpns[Math.floor(Math.random() * alpns.length)];
+            configNew = 'vmess://' + btoa(JSON.stringify(configNew));
+            newConfigs = newConfigs  + configNew+ '\n';
+          }
+        }
+      }
+      return new Response(btoa(newConfigs));
+    } else {
+        const url = new URL(request.url);
+        const splitted = url.pathname.replace(/^\/*/, '').split('/');
+        const address = splitted[0];
+        url.pathname = splitted.slice(1).join('/');
+        url.hostname = address;
+        url.protocol = 'https';
+        return fetch(new Request(url, request));
+    }
+  }
+};
+
+
+function isIp(ipstr) {
+  try {
+    if (ipstr == "" || ipstr == undefined) return false;
+    if (!/^(\d{1,2}|1\d\d|2[0-4]\d|25[0-5])(\.(\d{1,2}|1\d\d|2[0-4]\d|25[0-5])){2}\.(\d{1,2}|1\d\d|2[0-4]\d|25[0-4])$/.test(ipstr)) {
+      return false;
+    }
+    var ls = ipstr.split('.');
+    if (ls == null || ls.length != 4 || ls[3] == "0" || parseInt(ls[3]) === 0) {
+      return false;
+    }
+    return true;
+  } catch (ee) { }
+  return false;
+}
+
+// https://akilbhai.alisorathiya.workers.dev/sub/MBT/{{cloudflare-clean-ip-fromtest}}
+// https://akilbhai.alisorathiya.workers.dev/sub/IRC/{{cloudflare-clean-ip-fromtest}}
+// https://akilbhai.alisorathiya.workers.dev/sub/MKB/{{cloudflare-clean-ip-fromtest}}
+// https://akilbhai.alisorathiya.workers.dev/sub/MBT/{{cloudflare-clean-ip-fromtest}}
+// https://akilbhai.alisorathiya.workers.dev/sub/MBT/{{cloudflare-clean-ip-fromtest}}
+// https://akilbhai.alisorathiya.workers.dev/sub/MBT/{{cloudflare-clean-ip-fromtest}}
